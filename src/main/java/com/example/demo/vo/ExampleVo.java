@@ -1,4 +1,4 @@
-package com.example.demo.example;
+package com.example.demo.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @Accessors(chain = true)
-public class TestVo implements Serializable {
+public class ExampleVo implements Serializable {
     private Integer integer;
     private String string;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss",locale = "ch",timezone = "GMT+8")
