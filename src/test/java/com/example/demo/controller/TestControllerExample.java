@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.example.TestVo;
+import com.example.demo.vo.ExampleVo;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +20,7 @@ import java.util.Date;
 
 @SpringBootTest
 @Rollback
-class TestControllerTest {
+class TestControllerExample {
     @Autowired
     private WebApplicationContext wac;
 
@@ -29,7 +29,7 @@ class TestControllerTest {
     private Integer integer;
     private String string;
     private Date date;
-    private TestVo testVo;
+    private ExampleVo exampleVo;
     private String integerJsonStr;
     private String stringJsonStr;
     private String dateJsonStr;
@@ -39,15 +39,15 @@ class TestControllerTest {
         integer = 1;
         string = "string";
         date = new Date();
-        testVo = new TestVo();
-        testVo
+        exampleVo = new ExampleVo();
+        exampleVo
                 .setInteger(integer)
                 .setString(string)
                 .setDate(date);
         integerJsonStr = JSON.toJSONString(integer);
         stringJsonStr = JSON.toJSONString(string);
         dateJsonStr = JSON.toJSONString(date);
-        testVoJsonStr = JSON.toJSONString(testVo);
+        testVoJsonStr = JSON.toJSONString(exampleVo);
     }
 
     @BeforeAll
