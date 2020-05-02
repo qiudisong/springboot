@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.Exception.ParamException;
 import com.example.demo.service.ExampleService;
 import com.example.demo.vo.ExampleVo;
 import com.example.demo.vo.ResultVo;
@@ -65,6 +66,9 @@ public class ExampleController {
     @RequestMapping(value = "/selectByPrimaryKey", method = {RequestMethod.POST})
     @ResponseBody
     public ResultVo<ExampleVo> selectByPrimaryKey(@RequestParam int id) {
+        if (false)
+            throw new ParamException("id = " + id + " 不存在");
+        exampleService.selectByPrimaryKey(id).getDate();
         return ResultVo.ok(exampleService.selectByPrimaryKey(id));
     }
 }
