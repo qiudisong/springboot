@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExampleDao {
-    ExamplePo select(int id);
+    ExamplePo selectByPrimaryKey(int id);
 }

@@ -4,11 +4,11 @@
 
     <resultMap id="BaseResultMap" type="com.example.demo.po.ExamplePo">
         <result column="id" jdbcType="INTEGER" property="integer"/>
-                <result column="aa" jdbcType="VARCHAR" property="string"/>
-                <result column="bb" jdbcType="TIMESTAMP" property="date"/>
+        <result column="aa" jdbcType="VARCHAR" property="string"/>
+        <result column="bb" jdbcType="TIMESTAMP" property="date"/>
     </resultMap>
 
-    <select id="select" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         select * from example where id = #{id}
     </select>
 

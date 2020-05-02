@@ -15,8 +15,8 @@ public class ExampleServiceImpl implements ExampleService {
     ExampleDao exampleDao;
 
     @Override
-    public ExampleVo select(int id) {
-        ExamplePo examplePo = exampleDao.select(id);
+    public ExampleVo selectByPrimaryKey(int id) {
+        ExamplePo examplePo = exampleDao.selectByPrimaryKey(id);
         ExampleVo exampleVo1 = null;
         if(examplePo!=null){
             exampleVo1 = new ExampleVo();

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.ExampleService;
 import com.example.demo.vo.ExampleVo;
+import com.example.demo.vo.ResultVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,33 +23,33 @@ public class ExampleController {
 
     @RequestMapping(value = "/requestParam", method = {RequestMethod.GET})
     @ResponseBody
-    public ExampleVo requestParam(@RequestParam Integer integer,
-                                  @RequestParam String string,
-                                  @RequestParam Date date) {
+    public ResultVo<ExampleVo> requestParam(@RequestParam Integer integer,
+                                            @RequestParam String string,
+                                            @RequestParam Date date) {
         ExampleVo exampleVo = new ExampleVo()
                 .setInteger(integer)
                 .setString(string)
                 .setDate(date);
-        return exampleVo;
+        return ResultVo.ok(exampleVo);
     }
 
     @RequestMapping(value = "/pathVariable/{integer}/{string}/{date}", method = {RequestMethod.GET})
     @ResponseBody
-    public ExampleVo pathVariable(@PathVariable Integer integer,
-                                  @PathVariable String string,
-                                  @PathVariable Date date) {
+    public ResultVo<ExampleVo> pathVariable(@PathVariable Integer integer,
+                                            @PathVariable String string,
+                                            @PathVariable Date date) {
         ExampleVo exampleVo = new ExampleVo()
                 .setInteger(integer)
                 .setString(string)
                 .setDate(date);
-        return exampleVo;
+        return ResultVo.ok(exampleVo);
     }
 
     @RequestMapping(value = "/requestBody", method = {RequestMethod.POST})
     @ResponseBody
-    public ExampleVo requestBody(@RequestBody ExampleVo exampleVo) {
+    public ResultVo<ExampleVo> requestBody(@RequestBody ExampleVo exampleVo) {
         exampleVo.setDate(new Date());
-        return exampleVo;
+        return ResultVo.ok(exampleVo);
     }
 
     @RequestMapping(value = "html", method = {RequestMethod.POST, RequestMethod.GET})
@@ -61,9 +62,9 @@ public class ExampleController {
         return "/index.jsp";
     }
 
-    @RequestMapping(value = "/select", method = {RequestMethod.POST})
+    @RequestMapping(value = "/selectByPrimaryKey", method = {RequestMethod.POST})
     @ResponseBody
-    public ExampleVo select(@RequestParam int id) {
-        return exampleService.select(id);
+    public ResultVo<ExampleVo> selectByPrimaryKey(@RequestParam int id) {
+        return ResultVo.ok(exampleService.selectByPrimaryKey(id));
     }
 }

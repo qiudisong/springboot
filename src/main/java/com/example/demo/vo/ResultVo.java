@@ -1,5 +1,11 @@
 package com.example.demo.vo;
 
+import lombok.Getter;
+import lombok.ToString;
+
+import java.io.Serializable;
+
+@Getter
 public class ResultVo<T> {
     //响应是否成功
     private Boolean success;
@@ -19,6 +25,16 @@ public class ResultVo<T> {
         this.success = resultEnum.getSuccess();
         this.code = resultEnum.getCode();
         this.message = resultEnum.getMessage();
+    }
+
+    //自定义返回
+    public static ResultVo ok(ResultEnum resultEnum) {
+        return new ResultVo(resultEnum);
+    }
+
+    //自定义返回(带响应数据)
+    public static <T> ResultVo<T> ok(ResultEnum resultEnum, T data) {
+        return ok(resultEnum).setData(data);
     }
 
     //通用返回成功

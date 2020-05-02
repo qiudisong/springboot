@@ -48,19 +48,14 @@ class TestControllerExample {
         stringJsonStr = JSON.toJSONString(string);
         dateJsonStr = JSON.toJSONString(date);
         testVoJsonStr = JSON.toJSONString(exampleVo);
-    }
 
-    @BeforeAll
-    @DisplayName("测试类开始执行")
-    void init() {
-        System.out.println("测试类开始执行");
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).alwaysDo(MockMvcResultHandlers.print()).build();
     }
 
     @BeforeEach
     @DisplayName("每条用例开始时执行")
     void setUp() {
         System.out.println("每条用例开始时执行");
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).alwaysDo(MockMvcResultHandlers.print()).build();
     }
 
     @AfterEach
@@ -77,8 +72,7 @@ class TestControllerExample {
                 .param("string", stringJsonStr)
                 .param("date", dateJsonStr);
         ResultActions resultActions = mockMvc.perform(request);
-        resultActions
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -86,9 +80,7 @@ class TestControllerExample {
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/test/pathVariable/" + integerJsonStr + "/" + stringJsonStr + "/" + dateJsonStr);
         ResultActions resultActions = mockMvc.perform(request);
-        resultActions
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -101,9 +93,7 @@ class TestControllerExample {
                 .accept(MediaType.APPLICATION_JSON)
                 .content(testVoJsonStr);
         ResultActions resultActions = mockMvc.perform(request);
-        resultActions
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -111,9 +101,7 @@ class TestControllerExample {
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/test/html");
         ResultActions resultActions = mockMvc.perform(request);
-        resultActions
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -121,8 +109,6 @@ class TestControllerExample {
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/test/jsp");
         ResultActions resultActions = mockMvc.perform(request);
-        resultActions
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
