@@ -66,9 +66,6 @@ public class ExampleController {
     @RequestMapping(value = "/selectByPrimaryKey", method = {RequestMethod.POST})
     @ResponseBody
     public ResultVo<ExampleVo> selectByPrimaryKey(@RequestParam int id) {
-        if (false)
-            throw new ParamException("id = " + id + " 不存在");
-        exampleService.selectByPrimaryKey(id).getDate();
         return ResultVo.ok(exampleService.selectByPrimaryKey(id));
     }
 }
