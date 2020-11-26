@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.config.Exception.ParamException;
+import com.example.demo.result.ResultEnum;
+import com.example.demo.result.ResultException;
 import com.example.demo.service.ExampleService;
 import com.example.demo.vo.ExampleVo;
-import com.example.demo.vo.ResultVo;
+import com.example.demo.result.ResultVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @Controller
-@RequestMapping(value = "/test")
+@RequestMapping(value = "/example")
 public class ExampleController {
     @Resource
     private ExampleService exampleService;
@@ -24,33 +25,45 @@ public class ExampleController {
 
     @RequestMapping(value = "/requestParam", method = {RequestMethod.GET})
     @ResponseBody
-    public ResultVo<ExampleVo> requestParam(@RequestParam Integer integer,
-                                            @RequestParam String string,
-                                            @RequestParam Date date) {
+    public ResultVo<ExampleVo> requestParam(
+            @RequestParam Integer integer
+            , @RequestParam String string
+            , @RequestParam Date date
+    ) {
         ExampleVo exampleVo = new ExampleVo()
                 .setInteger(integer)
                 .setString(string)
                 .setDate(date);
-        return ResultVo.ok(exampleVo);
+        ResultVo resultVo = ResultVo.ok();
+        resultVo.setData(exampleVo);
+        return resultVo;
     }
 
     @RequestMapping(value = "/pathVariable/{integer}/{string}/{date}", method = {RequestMethod.GET})
     @ResponseBody
-    public ResultVo<ExampleVo> pathVariable(@PathVariable Integer integer,
-                                            @PathVariable String string,
-                                            @PathVariable Date date) {
+    public ResultVo<ExampleVo> pathVariable(
+            @PathVariable Integer integer
+            , @PathVariable String string
+            , @PathVariable Date date
+    ) {
         ExampleVo exampleVo = new ExampleVo()
                 .setInteger(integer)
                 .setString(string)
                 .setDate(date);
-        return ResultVo.ok(exampleVo);
+        ResultVo resultVo = ResultVo.ok();
+        resultVo.setData(exampleVo);
+        return resultVo;
     }
 
     @RequestMapping(value = "/requestBody", method = {RequestMethod.POST})
     @ResponseBody
-    public ResultVo<ExampleVo> requestBody(@RequestBody ExampleVo exampleVo) {
+    public ResultVo<ExampleVo> requestBody(
+            @RequestBody ExampleVo exampleVo
+    ) {
         exampleVo.setDate(new Date());
-        return ResultVo.ok(exampleVo);
+        ResultVo resultVo = ResultVo.ok();
+        resultVo.setData(exampleVo);
+        return resultVo;
     }
 
     @RequestMapping(value = "html", method = {RequestMethod.POST, RequestMethod.GET})
@@ -65,7 +78,25 @@ public class ExampleController {
 
     @RequestMapping(value = "/selectByPrimaryKey", method = {RequestMethod.POST})
     @ResponseBody
-    public ResultVo<ExampleVo> selectByPrimaryKey(@RequestParam int id) {
-        return ResultVo.ok(exampleService.selectByPrimaryKey(id));
+    public ResultVo<ExampleVo> selectByPrimaryKey(
+            @RequestParam int id
+    ) {
+        ExampleVo exampleVo = exampleService.selectByPrimaryKey(id);
+        ResultVo resultVo = ResultVo.ok();
+        resultVo.setData(exampleVo);
+        return resultVo;
+    }
+
+    @RequestMapping(value = "/throwRuntimeException", method = {RequestMethod.POST})
+    @ResponseBody
+    public void throwRuntimeException() {
+        throw new RuntimeException();
+    }
+
+    @RequestMapping(value = "/throwResultException", method = {RequestMethod.POST})
+    @ResponseBody
+    public void throwResultException() {
+        ResultEnum resultEnum = null;
+        throw new ResultException(resultEnum);
     }
 }

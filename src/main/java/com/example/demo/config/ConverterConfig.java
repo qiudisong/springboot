@@ -23,16 +23,17 @@ public class ConverterConfig {
 
     @Bean
     public Jackson2ObjectMapperFactoryBean jackson2ObjectMapperFactoryBean(
-            @Autowired Jackson2DateConverter jackson2DateConverter) {
+            @Autowired Jackson2DateConverter jackson2DateConverter
+    ) {
         Jackson2ObjectMapperFactoryBean jackson2ObjectMapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
-
         jackson2ObjectMapperFactoryBean.setDeserializers(jackson2DateConverter);
         return jackson2ObjectMapperFactoryBean;
     }
 
     @Bean
     public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(
-            @Autowired ObjectMapper objectMapper) {
+            @Autowired ObjectMapper objectMapper
+    ) {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter =
                 new MappingJackson2HttpMessageConverter();
         mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);

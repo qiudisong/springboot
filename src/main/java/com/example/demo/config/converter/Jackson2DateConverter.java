@@ -8,13 +8,6 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import java.util.Date;
 
 public class Jackson2DateConverter extends JsonDeserializer<Date> {
-    private static String[] pattern =
-            new String[]{
-                    "yyyy-MM-dd", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
-                    "yyyy.MM.dd", "yyyy.MM.dd HH:mm", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd'T'HH:mm:ss.SSSZ",
-                    "yyyy/MM/dd", "yyyy/MM/dd HH:mm", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd'T'HH:mm:ss.SSSZ"
-            };
-
     @Override
     public Date deserialize(JsonParser p, DeserializationContext deserializationContext) {
         String originDate;
