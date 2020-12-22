@@ -1,6 +1,9 @@
 package com.example.demo.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.example.demo.config.converter.DateJsonDeserializer;
+import com.example.demo.config.converter.DateJsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,6 +15,7 @@ import java.util.Date;
 public class ExampleVo implements Serializable {
     private Integer integer;
     private String string;
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss",locale = "ch",timezone = "GMT+8")
+    @JsonDeserialize(using = DateJsonDeserializer.class)
+    @JsonSerialize(using = DateJsonSerializer.class)
     private Date date;
 }

@@ -22,6 +22,7 @@ public class ExceptionUtil {
         } catch (IOException e) {
             e.printStackTrace();
             log.error(e.getMessage());
+            throw new RuntimeException();
         }
         return swStr;
     }

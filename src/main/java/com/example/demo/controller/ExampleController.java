@@ -17,7 +17,7 @@ public class ExampleController {
     @Resource
     private ExampleService exampleService;
 
-    @RequestMapping(value = "/restful", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/restful", method = {RequestMethod.GET})
     @ResponseBody
     public String restful() {
         return "success";
@@ -60,18 +60,17 @@ public class ExampleController {
     public ResultVo<ExampleVo> requestBody(
             @RequestBody ExampleVo exampleVo
     ) {
-        exampleVo.setDate(new Date());
         ResultVo resultVo = ResultVo.ok();
         resultVo.setData(exampleVo);
         return resultVo;
     }
 
-    @RequestMapping(value = "html", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "html", method = {RequestMethod.GET})
     public String html() {
         return "/index.html";
     }
 
-    @RequestMapping(value = "jsp", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "jsp", method = {RequestMethod.GET})
     public String jsp() {
         return "/index.jsp";
     }
