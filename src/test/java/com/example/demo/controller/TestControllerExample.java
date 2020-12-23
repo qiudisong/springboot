@@ -67,7 +67,7 @@ class TestControllerExample {
     @Test
     void requestParam() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/test/requestParam")
+                .get("/example/requestParam")
                 .param("integer", integerJsonStr)
                 .param("string", stringJsonStr)
                 .param("date", dateJsonStr);
@@ -78,7 +78,7 @@ class TestControllerExample {
     @Test
     void pathVariable() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/test/pathVariable/" + integerJsonStr + "/" + stringJsonStr + "/" + dateJsonStr);
+                .get("/example/pathVariable/" + integerJsonStr + "/" + stringJsonStr + "/" + dateJsonStr);
         ResultActions resultActions = mockMvc.perform(request);
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
@@ -88,7 +88,7 @@ class TestControllerExample {
     @RepeatedTest(value = 3, name = RepeatedTest.LONG_DISPLAY_NAME)
     void requestBody() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .post("/test/requestBody")
+                .post("/example/requestBody")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(testVoJsonStr);
@@ -99,7 +99,7 @@ class TestControllerExample {
     @Test
     void testHtml() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/test/html");
+                .get("/example/html");
         ResultActions resultActions = mockMvc.perform(request);
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
@@ -107,7 +107,7 @@ class TestControllerExample {
     @Test
     void testJsp() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/test/jsp");
+                .get("/example/jsp");
         ResultActions resultActions = mockMvc.perform(request);
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
