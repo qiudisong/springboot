@@ -1,8 +1,5 @@
 package com.example.demo.result;
 
-import com.example.demo.result.ResultEnum;
-import com.example.demo.result.ResultVo;
-
 public class ResultException extends RuntimeException {
     private ResultVo resultVo;
 

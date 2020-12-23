@@ -1,5 +1,8 @@
 package com.example.demo.result;
 
+import lombok.Getter;
+
+@Getter
 public class ResultVo<T> {
     //响应是否成功
     private Boolean success;
@@ -20,30 +23,11 @@ public class ResultVo<T> {
         this.data = data;
     }
 
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getDetailMessage() {
-        return detailMessage;
-    }
-
-    public T getData() {
-        return data;
-    }
-
     public ResultVo(ResultEnum resultEnum) {
         this.success = resultEnum.getSuccess();
         this.code = resultEnum.getCode();
         this.message = resultEnum.getMessage();
+        this.detailMessage = resultEnum.getDetailMessage();
     }
 
     //通用返回成功

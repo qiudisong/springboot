@@ -15,6 +15,12 @@ public enum ResultEnum {
     private String code;
     //响应码信息
     private String message;
+    //详细信息
+    private String detailMessage;
+
+    public void setDetailMessage(String detailMessage) {
+        this.detailMessage = detailMessage;
+    }
 
     ResultEnum(boolean success, String code, String message) {
         this.success = success;
