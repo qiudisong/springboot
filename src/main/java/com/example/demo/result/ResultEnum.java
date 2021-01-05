@@ -18,8 +18,9 @@ public enum ResultEnum {
     //详细信息
     private String detailMessage;
 
-    public void setDetailMessage(String detailMessage) {
+    public ResultEnum setDetailMessage(String detailMessage) {
         this.detailMessage = detailMessage;
+        return this;
     }
 
     ResultEnum(boolean success, String code, String message) {
